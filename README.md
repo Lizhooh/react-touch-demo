@@ -8,6 +8,8 @@
 yarn install
 # dev server
 yarn start
+# open http://127.0.0.1:3000
+# F12 -> Ctrl + Shift + M（Toggle device toolbar）
 ```
 
 ![](./_image/full-view.gif)
