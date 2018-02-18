@@ -29,3 +29,17 @@ html {
 .flex-jc-center {
     justify-content: center;
 }
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
