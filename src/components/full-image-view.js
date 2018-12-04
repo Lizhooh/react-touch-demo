@@ -67,7 +67,7 @@ export default class FullImageView extends Component {
 
         return (
             <Container>
-                <Header className="flex flex-ai-center">
+                <Header>
                     <span className="text">{active + 1} / {data.length}</span>
                     <i className="material-icons" onClick={onClose}>close</i>
                 </Header>
@@ -93,16 +93,24 @@ export default class FullImageView extends Component {
 }
 
 const Container = styled.div`
-    background-color: rgba(1, 1, 1, 1);
+    background-color: rgba(30, 30, 30, 1);
     position: fixed;
     width: 100%;
     height: 100%;
-    top: 0;
-    z-index: 100;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
     display: flex;
     flex-direction: column;
     transform: translate3d(0, 0, 0);
-    color: #fff;
+    color: #333;
+    z-index: 1010;
+
+    ul, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 `;
 
 const Header = styled.header`
@@ -110,8 +118,10 @@ const Header = styled.header`
     display: flex;
     width: 100%;
     padding: 12px;
-    > span.text { flex: 1 }
-    > i { font-size: 20px }
+    display: flex;
+    align-items: center;
+    > span { flex: 1; font-weight: bold; }
+    > i { font-size: 21px }
 `;
 
 const List = styled.ul`
@@ -121,22 +131,32 @@ const List = styled.ul`
     flex: 1;
     animation: full-image-view-list-start 0.24s ease-in-out 0.1s;
     animation-fill-mode: both;
+    padding-bottom: 50px;
+
+    /* 设置偏移量 */
+    transform: translate3d(${p => -p.offsetX}px, 0, 0);
+
+    ${p => p.animation && `
+        transition: all 0.2s ease;
+    `};
+
     @keyframes full-image-view-list-start {
         0% { opacity: 0 }
         100% { opacity: 1 }
     }
 
+
     > li {
         flex: 1;
+        display: flex;
         text-align: center;
-        padding: 8px;
+        padding: 8px 4px;
+        align-items: center;
+
         > img {
+            max-height: cacl(100% - 100px);
             max-height: 100%;
+            box-shadow: 1px 2px 2px rgba(1, 1, 1, 0.16);
         }
     }
-    /* 设置偏移量 */
-    transform: translate3d(${p => -p.offsetX}px, 0, 0);
-    ${p => p.animation && `
-        transition: all 0.2s ease;
-    `};
 `;
